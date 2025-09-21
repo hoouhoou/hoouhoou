@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Retro Rewind: Classic TV Time Machine!</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,9 +10,11 @@
     --primary: #ff4d4d;
     --secondary: #1c4587;
     --accent: #ffcc00;
+ --accent-dark: #e6b800;
     --dark: #1a1a1a;
     --light: #f8f9fa;
     --vintage: #e6d2aa;
+    --success: #4CAF50;
   }
   
   * {
@@ -71,6 +72,12 @@
     letter-spacing: 3px;
     text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
     color: var(--accent);
+    transition: all 0.3s ease;
+  }
+  
+  h1:focus {
+    outline: 2px solid var(--accent);
+    border-radius: 4px;
   }
   
   header p {
@@ -100,6 +107,13 @@
     justify-content: center;
     font-size: 1.5rem;
     color: var(--accent);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .film-frame:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.5);
   }
   
   /* Section Styles */
@@ -116,6 +130,12 @@
     text-align: center;
     position: relative;
     padding-bottom: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  h2:focus {
+    outline: 2px solid var(--accent);
+    border-radius: 4px;
   }
   
   h2::after {
@@ -140,6 +160,11 @@
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow-x: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .table-container:hover {
+    transform: translateY(-5px);
   }
   
   table {
@@ -175,6 +200,19 @@
     background-color: rgba(255, 255, 255, 0.08);
   }
   
+  td[contenteditable="true"] {
+    background-color: rgba(255, 254, 240, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    min-height: 20px;
+    min-width: 50px;
+  }
+  
+  td[contenteditable="true"]:focus {
+    background-color: rgba(255, 254, 240, 0.4);
+    outline: 2px solid var(--accent);
+  }
+  
   /* Progress bars for availability */
   .progress-container {
     width: 100%;
@@ -194,6 +232,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    transition: width 0.5s ease;
   }
   
   /* Button Styles */
@@ -204,7 +243,7 @@
     margin: 2rem 0;
   }
   
-  .edit-button {
+  .save-button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -217,16 +256,33 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
-    text-decoration: none;
   }
   
-  .edit-button:hover {
+  .save-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
   }
   
-  .edit-button:active {
+  .save-button:active {
     transform: translateY(0);
+  }
+  
+  .reset-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .reset-button:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
   
   /* Footer Styles */
@@ -287,6 +343,30 @@
     animation-delay: 2s;
   }
   
+  /* Toast notification */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--success);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 1000;
+  }
+  
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
   /* Responsive adjustments */
   @media (max-width: 768px) {
     h1 {
@@ -316,225 +396,311 @@
       align-items: center;
     }
   }
+  
+  /* New additions */
+  .instructions {
+    text-align: center;
+    margin: 1rem 0;
+    font-style: italic;
+    opacity: 0.8;
+  }
+  
+  .tv-icon {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .empty-cell-hint::before {
+    content: "Click to edit";
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+  }
+  
+  .empty-cell-hint:focus::before {
+    content: "";
+  }
 </style>
 </head>
 <body>
   <header>
     <div class="container header-content">
       <div class="film-strip">
-        <div class="film-frame">🎬</div>
+        <div class="film-frame" onclick="addShow()" title="Add a new show">➕</div>
         <div class="film-frame">📺</div>
         <div class="film-frame">🍿</div>
         <div class="film-frame">🎭</div>
-        <div class="film-frame">⭐</div>
+        <div class="film-frame" onclick="printPage()" title="Print schedule">🖨️</div>
       </div>
-      <h1>RETRO REWIND</h1>
-      <p>Your Time Machine to Classic Television Adventures!</p>
+      <h1 contenteditable="true">RETRO REWIND</h1>
+      <p contenteditable="true">Your Time Machine to Classic Television Adventures!</p>
     </div>
   </header>
 
   <main class="container">
     <section>
-      <h2>📺 Show Availability</h2>
+      <p class="instructions">Click on any text to edit. Your changes will be saved when you click the Save button.</p>
+      
+      <h2 contenteditable="true"><span class="tv-icon">📺</span> Show Availability</h2>
       <div class="table-container">
         <table id="availability">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Total Episodes</th>
-              <th>Available</th>
-              <th>% Completed</th>
-              <th>Available Until</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Father Knows Best - Season 3</td>
-              <td>12</td>
-              <td>4</td>
-              <td>
-                <div class="progress-container">
-                  <div class="progress-bar" style="width: 67%">67%</div>
-                </div>
-              </td>
-              <td>October 1, 2025</td>
-            </tr>
-            <tr>
-              <td>The Beverly Hillbillies - Season 1</td>
-              <td>34</td>
-              <td>6</td>
-              <td>
-                <div class="progress-container">
-                  <div class="progress-bar" style="width: 65%">65%</div>
-                </div>
-              </td>
-              <td>October 25, 2025</td>
-            </tr>
-            <tr>
-              <td>The Munsters - Season 2</td>
-              <td>15</td>
-              <td>7</td>
-              <td>
-                <div class="progress-container">
-                  <div class="progress-bar" style="width: 53%">53%</div>
-                </div>
-              </td>
-              <td>October 19, 2025</td>
-            </tr>
-            <tr>
-              <td>The Life and Legend of Wyatt Earp S2</td>
-              <td>16</td>
-              <td>8</td>
-              <td>
-                <div class="progress-container">
-                  <div class="progress-bar" style="width: 50%">50%</div>
-                </div>
-              </td>
-              <td>November 15, 2025</td>
-            </tr>
-            <tr>
-              <td>Annie Oakley</td>
-              <td>17</td>
-              <td>4</td>
-              <td>
-                <div class="progress-container">
-                  <div class="progress-bar" style="width: 76%">76%</div>
-                </div>
-              </td>
-              <td>October 1, 2025</td>
-            </tr>
-          </tbody>
-        </table>
+          <tbody><tr>
+            <th>Title</th>
+            <th>Total Episodes</th>
+            <th>Available</th>
+            <th>% Completed</th>
+            <th>Available Until</th>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 67%">67%</div>
+              </div>
+            </td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 65%">65%</div>
+              </div>
+            </td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 53%">53%</div>
+              </div>
+            </td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 50%">50%</div>
+              </div>
+            </td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 76%">76%</div>
+              </div>
+            </td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+          </tr>
+        </tbody></table>
       </div>
 
-      <h2>📅 Weekly Schedule</h2>
+      <h2 contenteditable="true"><span class="tv-icon">📅</span> Weekly Schedule</h2>
       <div class="table-container">
         <table id="schedule">
-          <thead>
-            <tr>
-              <th>Monday</th>
-              <th>Wednesday</th>
-              <th>Saturday</th>
-              <th>Sunday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Father Knows Best (1:00AM - 1:30AM)<br>Annie Oakley (1:30AM - 2:00AM)</td>
-              <td>Father Knows Best (1:00AM - 1:30AM)<br>Annie Oakley (1:30AM - 2:00AM)</td>
-              <td>The Life and Legend of Wyatt Earp S2 (4:00PM - 4:30PM)<br>The Beverly Hillbillies (4:30PM - 5:00PM)</td>
-              <td>The Munsters (2:00PM - 3:00PM)</td>
-            </tr>
-          </tbody>
-        </table>
+          <tbody><tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+          </tr>
+        </tbody></table>
       </div>
 
-      <h2>🗓️ Start & End Dates</h2>
+      <h2 contenteditable="true"><span class="tv-icon">🗓️</span> Start &amp; End Dates</h2>
       <div class="table-container">
         <table id="dates">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Father Knows Best Season 3</td>
-              <td>August 25, 2025</td>
-              <td>December 29, 2025</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>The Beverly Hillbillies</td>
-              <td>March 8, 2025</td>
-              <td>November 15, 2025</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>The Munsters S2</td>
-              <td>August 31, 2025</td>
-              <td>-</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>The Life and Legend of Wyatt Earp S2</td>
-              <td>August 3, 2025</td>
-              <td>April 26, 2026</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Annie Oakley</td>
-              <td>August 6, 2025</td>
-              <td>November 3, 2025</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>The Munsters S1</td>
-              <td>May 4, 2025</td>
-              <td>August 24, 2025</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Father Knows Best Season 2</td>
-              <td>April 21, 2025</td>
-              <td>August 20, 2025</td>
-              <td>Continue Season 3</td>
-            </tr>
-            <tr>
-              <td>The Adventure of Rex and Rinty</td>
-              <td>July 26, 2025</td>
-              <td>August 30, 2025</td>
-              <td>Cancelled on August 8, 2025</td>
-            </tr>
-            <tr>
-              <td>Johnny Ringo</td>
-              <td>-</td>
-              <td>-</td>
-              <td>Cancelled on August 8, 2025</td>
-            </tr>
-            <tr>
-              <td>Hudson's Bay</td>
-              <td>December 14, 2024</td>
-              <td>July 19, 2025</td>
-              <td>Replaced by Rex and Rinty</td>
-            </tr>
-            <tr>
-              <td>The Green Hornet</td>
-              <td>June 16, 2025</td>
-              <td>August 4, 2025</td>
-              <td>Replaced by Annie Oakley</td>
-            </tr>
-            <tr>
-              <td>The Life and Legend of Wyatt Earp S1</td>
-              <td>December 1, 2024</td>
-              <td>July 27, 2025</td>
-              <td>Continue Season 2</td>
-            </tr>
-            <tr>
-              <td>Hopalong Cassidy - Season 2</td>
-              <td>February 16, 2025</td>
-              <td>August 3, 2025</td>
-              <td>Replaced by Johnny Ringo</td>
-            </tr>
-          </tbody>
-        </table>
+          <tbody><tr>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td><button class="reset-button small" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td><button class="reset-button small" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td><button class="reset-button small" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td><button class="reset-button small" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+          <tr>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td contenteditable="true" class="empty-cell-hint"></td>
+            <td><button class="reset-button small" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+        </tbody></table>
       </div>
       
       <div class="button-group">
-        <a href="editable.html" class="edit-button">
-          <i class="fas fa-edit"></i> Edit Schedule
-        </a>
+        <button class="save-button" onclick="saveEdits()">
+          <i class="fas fa-save"></i> Save Changes
+        </button>
+        <button class="reset-button" onclick="resetEdits()">
+          <i class="fas fa-undo"></i> Reset Changes
+        </button>
+        <button class="save-button" onclick="addRow()">
+          <i class="fas fa-plus"></i> Add Show
+        </button>
       </div>
     </section>
   </main>
 
   <div class="footer">
     <div class="container footer-content">
-      <p>&copy; 2025 Retro Rewind - Classic TV Time Machine</p>
+      <p>© 2025 Retro Rewind - Classic TV Time Machine</p>
+      <p>Made with ❤️ for classic TV enthusiasts</p>
     </div>
   </div>
+
+  <div class="toast" id="saveToast">
+    <i class="fas fa-check-circle"></i>
+    <span>Changes saved successfully!</span>
+  </div>
+
+  <script>
+    function saveEdits() {
+      const content = document.documentElement.outerHTML;
+      const blob = new Blob([content], { type: 'text/html' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'retro_rewind_edited.html';
+      link.click();
+      
+      // Show toast notification
+      const toast = document.getElementById('saveToast');
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    function resetEdits() {
+      if (confirm('Are you sure you want to reset all changes? This cannot be undone.')) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+    
+    function addRow() {
+      const table = document.querySelector('#dates tbody');
+      const newRow = table.insertRow();
+      
+      for (let i = 0; i < 4; i++) {
+        const cell = newRow.insertCell();
+        cell.contentEditable = true;
+        cell.className = 'empty-cell-hint';
+      }
+      
+      // Add delete button
+      const actionCell = newRow.insertCell();
+      actionCell.innerHTML = '<button class="reset-button small" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>';
+    }
+    
+    function deleteRow(button) {
+      const row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+    
+    function addShow() {
+      const table = document.querySelector('#availability tbody');
+      const newRow = table.insertRow();
+      
+      // Add cells for the new show
+      for (let i = 0; i < 3; i++) {
+        const cell = newRow.insertCell();
+        cell.contentEditable = true;
+        cell.className = 'empty-cell-hint';
+      }
+      
+      // Add progress bar cell
+      const progressCell = newRow.insertCell();
+      progressCell.innerHTML = '<div class="progress-container"><div class="progress-bar" style="width: 0%">0%</div></div>';
+      
+      // Add available until cell
+      const dateCell = newRow.insertCell();
+      dateCell.contentEditable = true;
+      dateCell.className = 'empty-cell-hint';
+    }
+    
+    function printPage() {
+      window.print();
+    }
+    
+    // Auto-save functionality (every 30 seconds)
+    setInterval(() => {
+      // Only save if changes were made
+      if (document.querySelector('[contenteditable="true"]:focus')) {
+        const toast = document.getElementById('saveToast');
+        toast.querySelector('span').textContent = 'Auto-saved changes!';
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2000);
+        
+        // Trigger download in background (optional)
+        const content = document.documentElement.outerHTML;
+        localStorage.setItem('retroRewindBackup', content);
+      }
+    }, 30000);
+    
+    // Load from localStorage if available
+    window.addEventListener('load', () => {
+      const backup = localStorage.getItem('retroRewindBackup');
+      if (backup && confirm('Found a previous backup. Would you like to restore it?')) {
+        document.documentElement.innerHTML = backup;
+      }
+    });
+  </script>
 </body>
 </html>

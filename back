@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Retro Rewind: Classic TV Time Machine!</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --primary: #ff4d4d;
+    --secondary: #1c4587;
+    --accent: #ffcc00;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --vintage: #e6d2aa;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Chivo', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom, #2c3e50, #1a1a1a);
+    color: var(--light);
+    line-height: 1.6;
+    background-attachment: fixed;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Header Styles */
+  header {
+    background: linear-gradient(135deg, var(--secondary) 0%, #0a2a5e 100%);
+    color: #fff;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5px solid var(--accent);
+  }
+  
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+    opacity: 0.1;
+  }
+  
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    color: var(--accent);
+  }
+  
+  header p {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    color: white;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .film-strip {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    gap: 10px;
+  }
+  
+  .film-frame {
+    width: 60px;
+    height: 60px;
+    background: var(--dark);
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+  
+  /* Section Styles */
+  section {
+    padding: 2rem 0;
+  }
+  
+  h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin: 2rem 0 1rem;
+    color: var(--accent);
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  
+  /* Table Styles */
+  .table-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  th {
+    background: linear-gradient(to bottom, var(--secondary), #0d3269);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+  
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  td[contenteditable="true"] {
+    background-color: rgba(255, 254, 240, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  td[contenteditable="true"]:focus {
+    background-color: rgba(255, 254, 240, 0.4);
+    outline: 2px solid var(--accent);
+  }
+  
+  /* Progress bars for availability */
+  .progress-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 12px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    text-align: right;
+    padding-right: 5px;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Button Styles */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .save-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(to right, var(--primary), #ff6b6b);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  }
+  
+  .save-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+  }
+  
+  .save-button:active {
+    transform: translateY(0);
+  }
+  
+  .reset-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .reset-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Add show form */
+  .add-show-form {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .form-group input, .form-group select {
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+  }
+
+  .form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  /* Footer Styles */
+  .footer {
+    text-align: center;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #0a1930 0%, #1c4587 100%);
+    color: #fff;
+    margin-top: 3rem;
+    border-top: 5px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><polygon points="50,0 100,50 50,100 0,50" fill="white"/></svg>');
+    opacity: 0.1;
+  }
+  
+  .footer-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Animation for film strip */
+  @keyframes flicker {
+    0% { opacity: 0.8; }
+    5% { opacity: 0.9; }
+    10% { opacity: 0.7; }
+    15% { opacity: 0.95; }
+    20% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+  
+  .film-frame {
+    animation: flicker 4s infinite;
+  }
+  
+  .film-frame:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  
+  .film-frame:nth-child(3) {
+    animation-delay: 1s;
+  }
+  
+  .film-frame:nth-child(4) {
+    animation-delay: 1.5s;
+  }
+  
+  .film-frame:nth-child(5) {
+    animation-delay: 2s;
+  }
+  
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, #1c4587 0%, #0a2a5e 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--accent);
+  }
+
+  .modal h3 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .modal p {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+    }
+    
+    .film-frame {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    th, td {
+      padding: 0.7rem;
+    }
+    
+    .button-group {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="film-strip">
+        <div class="film-frame">🎬</div>
+        <div class="film-frame">📺</div>
+        <div class="film-frame">🍿</div>
+        <div class="film-frame">🎭</div>
+        <div class="film-frame">⭐</div>
+      </div>
+      <h1 contenteditable="true">RETRO REWIND</h1>
+      <p contenteditable="true">Your Time Machine to Classic Television Adventures!</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2 contenteditable="true">📺 Show Availability</h2>
+      <div class="table-container">
+        <table id="availability">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Total Episodes</th>
+              <th>Available</th>
+              <th>% Completed</th>
+              <th>Available Until</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="availability-body">
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="add-show-form">
+        <h3>Add New Show</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="show-title">Title</label>
+            <input type="text" id="show-title" placeholder="e.g., I Love Lucy - Season 1">
+          </div>
+          <div class="form-group">
+            <label for="show-total">Total Episodes</label>
+            <input type="number" id="show-total" placeholder="e.g., 24">
+          </div>
+          <div class="form-group">
+            <label for="show-available">Available Episodes</label>
+            <input type="number" id="show-available" placeholder="e.g., 12">
+          </div>
+          <div class="form-group">
+            <label for="show-until">Available Until</label>
+            <input type="date" id="show-until">
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button class="reset-button" onclick="clearForm()">
+            <i class="fas fa-times"></i> Clear
+          </button>
+          <button class="save-button" onclick="addNewShow()">
+            <i class="fas fa-plus"></i> Add Show
+          </button>
+        </div>
+      </div>
+
+      <h2 contenteditable="true">📅 Weekly Schedule</h2>
+      <div class="table-container">
+        <table id="schedule">
+          <thead>
+            <tr>
+              <th>Monday</th>
+              <th>Wednesday</th>
+              <th>Saturday</th>
+              <th>Sunday</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="schedule-body">
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="add-show-form">
+        <h3>Add Schedule Item</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="schedule-day">Day</label>
+            <select id="schedule-day">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="schedule-details">Schedule Details</label>
+            <input type="text" id="schedule-details" placeholder="e.g., I Love Lucy (8:00PM - 8:30PM)">
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button class="reset-button" onclick="clearScheduleForm()">
+            <i class="fas fa-times"></i> Clear
+          </button>
+          <button class="save-button" onclick="addScheduleItem()">
+            <i class="fas fa-plus"></i> Add Schedule
+          </button>
+        </div>
+      </div>
+
+      <h2 contenteditable="true">🗓️ Start & End Dates</h2>
+      <div class="table-container">
+        <table id="dates">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="dates-body">
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="add-show-form">
+        <h3>Add Date Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="date-title">Title</label>
+            <input type="text" id="date-title" placeholder="e.g., I Love Lucy - Season 1">
+          </div>
+          <div class="form-group">
+            <label for="date-start">Start Date</label>
+            <input type="date" id="date-start">
+          </div>
+          <div class="form-group">
+            <label for="date-end">End Date</label>
+            <input type="date" id="date-end">
+          </div>
+          <div class="form-group">
+            <label for="date-notes">Notes</label>
+            <input type="text" id="date-notes" placeholder="e.g., Continuing to Season 2">
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button class="reset-button" onclick="clearDateForm()">
+            <i class="fas fa-times"></i> Clear
+          </button>
+          <button class="save-button" onclick="addDateInfo()">
+            <i class="fas fa-plus"></i> Add Dates
+          </button>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button class="save-button" onclick="saveAllData()">
+          <i class="fas fa-save"></i> Save All Data
+        </button>
+        <button class="reset-button" onclick="loadAllData()">
+          <i class="fas fa-sync"></i> Reload Data
+        </button>
+        <button class="reset-button" onclick="resetAllData()">
+          <i class="fas fa-undo"></i> Reset to Default
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confirmation Modal -->
+  <div class="modal" id="confirmation-modal">
+    <div class="modal-content">
+      <h3>Success!</h3>
+      <p id="modal-message">Your changes have been saved successfully.</p>
+      <div class="modal-buttons">
+        <button class="save-button" onclick="closeModal()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2025 Retro Rewind - Classic TV Time Machine</p>
+    </div>
+  </div>
+
+  <script>
+    // Data storage functions
+    function getData(key) {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : null;
+    }
+
+    function saveData(key, data) {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    // Sample initial data
+    const initialAvailabilityData = [
+      { id: 1, title: "Father Knows Best - Season 3", total: 12, available: 4, until: "2025-10-01" },
+      { id: 2, title: "The Beverly Hillbillies - Season 1", total: 34, available: 6, until: "2025-10-25" },
+      { id: 3, title: "The Munsters - Season 2", total: 15, available: 7, until: "2025-10-19" },
+      { id: 4, title: "The Life and Legend of Wyatt Earp S2", total: 16, available: 8, until: "2025-11-15" },
+      { id: 5, title: "Annie Oakley", total: 17, available: 4, until: "2025-10-01" }
+    ];
+
+    const initialScheduleData = [
+      { id: 1, day: "Monday", details: "Father Knows Best (1:00AM - 1:30AM)<br>Annie Oakley (1:30AM - 2:00AM)" },
+      { id: 2, day: "Wednesday", details: "Father Knows Best (1:00AM - 1:30AM)<br>Annie Oakley (1:30AM - 2:00AM)" },
+      { id: 3, day: "Saturday", details: "The Life and Legend of Wyatt Earp S2 (4:00PM - 4:30PM)<br>The Beverly Hillbillies (4:30PM - 5:00PM)" },
+      { id: 4, day: "Sunday", details: "The Munsters (2:00PM - 3:00PM)" }
+    ];
+
+    const initialDatesData = [
+      { id: 1, title: "Father Knows Best Season 3", start: "2025-08-25", end: "2025-12-29", notes: "" },
+      { id: 2, title: "The Beverly Hillbillies", start: "2025-03-08", end: "2025-11-15", notes: "" },
+      { id: 3, title: "The Munsters S2", start: "2025-08-31", end: "-", notes: "" },
+      { id: 4, title: "The Life and Legend of Wyatt Earp S2", start: "2025-08-03", end: "2026-04-26", notes: "" },
+      { id: 5, title: "Annie Oakley", start: "2025-08-06", end: "2025-11-03", notes: "" }
+    ];
+
+    // Load data functions
+    function loadAvailabilityData() {
+      let availabilityData = getData('availabilityData');
+      if (!availabilityData) {
+        availabilityData = initialAvailabilityData;
+        saveData('availabilityData', availabilityData);
+      }
+      
+      const tableBody = document.getElementById('availability-body');
+      tableBody.innerHTML = '';
+      
+      availabilityData.forEach(item => {
+        const percentage = Math.round((item.available / item.total) * 100);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td contenteditable="true" data-field="title">${item.title}</td>
+          <td contenteditable="true" data-field="total">${item.total}</td>
+          <td contenteditable="true" data-field="available">${item.available}</td>
+          <td>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: ${percentage}%">${percentage}%</div>
+            </div>
+          </td>
+          <td contenteditable="true" data-field="until">${formatDate(item.until)}</td>
+          <td>
+            <button class="reset-button" onclick="deleteAvailabilityItem(${item.id})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function loadScheduleData() {
+      let scheduleData = getData('scheduleData');
+      if (!scheduleData) {
+        scheduleData = initialScheduleData;
+        saveData('scheduleData', scheduleData);
+      }
+      
+      const tableBody = document.getElementById('schedule-body');
+      tableBody.innerHTML = '';
+      
+      // Group by day
+      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      const scheduleByDay = {};
+      days.forEach(day => {
+        scheduleByDay[day] = scheduleData.filter(item => item.day === day);
+      });
+      
+      // Find maximum number of rows needed
+      const maxRows = Math.max(...Object.values(scheduleByDay).map(arr => arr.length));
+      
+      // Create rows
+      for (let i = 0; i < maxRows; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td contenteditable="true">${scheduleByDay.Monday[i] ? scheduleByDay.Monday[i].details : ''}</td>
+          <td contenteditable="true">${scheduleByDay.Wednesday[i] ? scheduleByDay.Wednesday[i].details : ''}</td>
+          <td contenteditable="true">${scheduleByDay.Saturday[i] ? scheduleByDay.Saturday[i].details : ''}</td>
+          <td contenteditable="true">${scheduleByDay.Sunday[i] ? scheduleByDay.Sunday[i].details : ''}</td>
+          <td>
+            ${scheduleByDay.Monday[i] ? `<button class="reset-button" onclick="deleteScheduleItem(${scheduleByDay.Monday[i].id})"><i class="fas fa-trash"></i></button>` : ''}
+          </td>
+        `;
+        tableBody.appendChild(row);
+      }
+    }
+
+    function loadDatesData() {
+      let datesData = getData('datesData');
+      if (!datesData) {
+        datesData = initialDatesData;
+        saveData('datesData', datesData);
+      }
+      
+      const tableBody = document.getElementById('dates-body');
+      tableBody.innerHTML = '';
+      
+      datesData.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td contenteditable="true" data-field="title">${item.title}</td>
+          <td contenteditable="true" data-field="start">${formatDate(item.start)}</td>
+          <td contenteditable="true" data-field="end">${formatDate(item.end)}</td>
+          <td contenteditable="true" data-field="notes">${item.notes}</td>
+          <td>
+            <button class="reset-button" onclick="deleteDateItem(${item.id})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function loadAllData() {
+      loadAvailabilityData();
+      loadScheduleData();
+      loadDatesData();
+      showModal('Data reloaded successfully!');
+    }
+
+    // Save data functions
+    function saveAvailabilityData() {
+      const table = document.getElementById('availability-body');
+      const rows = table.querySelectorAll('tr');
+      const availabilityData = [];
+      
+      rows.forEach((row, index) => {
+        const cells = row.querySelectorAll('td[contenteditable="true"]');
+        availabilityData.push({
+          id: index + 1,
+          title: cells[0].textContent,
+          total: parseInt(cells[1].textContent),
+          available: parseInt(cells[2].textContent),
+          until: parseDate(cells[4].textContent)
+        });
+      });
+      
+      saveData('availabilityData', availabilityData);
+      return availabilityData;
+    }
+
+    function saveScheduleData() {
+      // This would need a more complex implementation for a real app
+      // For simplicity, we'll just keep the initial data structure
+      const scheduleData = getData('scheduleData') || initialScheduleData;
+      saveData('scheduleData', scheduleData);
+      return scheduleData;
+    }
+
+    function saveDatesData() {
+      const table = document.getElementById('dates-body');
+      const rows = table.querySelectorAll('tr');
+      const datesData = [];
+      
+      rows.forEach((row, index) => {
+        const cells = row.querySelectorAll('td[contenteditable="true"]');
+        datesData.push({
+          id: index + 1,
+          title: cells[0].textContent,
+          start: parseDate(cells[1].textContent),
+          end: parseDate(cells[2].textContent),
+          notes: cells[3].textContent
+        });
+      });
+      
+      saveData('datesData', datesData);
+      return datesData;
+    }
+
+    function saveAllData() {
+      saveAvailabilityData();
+      saveScheduleData();
+      saveDatesData();
+      showModal('All data saved successfully!');
+    }
+
+    // Add new item functions
+    function addNewShow() {
+      const title = document.getElementById('show-title').value;
+      const total = parseInt(document.getElementById('show-total').value);
+      const available = parseInt(document.getElementById('show-available').value);
+      const until = document.getElementById('show-until').value;
+      
+      if (!title || isNaN(total) || isNaN(available) || !until) {
+        showModal('Please fill all fields correctly!');
+        return;
+      }
+      
+      let availabilityData = getData('availabilityData') || [];
+      const newId = availabilityData.length > 0 ? Math.max(...availabilityData.map(item => item.id)) + 1 : 1;
+      
+      availabilityData.push({
+        id: newId,
+        title,
+        total,
+        available,
+        until
+      });
+      
+      saveData('availabilityData', availabilityData);
+      loadAvailabilityData();
+      clearForm();
+      showModal('Show added successfully!');
+    }
+
+    function addScheduleItem() {
+      const day = document.getElementById('schedule-day').value;
+      const details = document.getElementById('schedule-details').value;
+      
+      if (!day || !details) {
+        showModal('Please fill all fields!');
+        return;
+      }
+      
+      let scheduleData = getData('scheduleData') || [];
+      const newId = scheduleData.length > 0 ? Math.max(...scheduleData.map(item => item.id)) + 1 : 1;
+      
+      scheduleData.push({
+        id: newId,
+        day,
+        details
+      });
+      
+      saveData('scheduleData', scheduleData);
+      loadScheduleData();
+      clearScheduleForm();
+      showModal('Schedule item added successfully!');
+    }
+
+    function addDateInfo() {
+      const title = document.getElementById('date-title').value;
+      const start = document.getElementById('date-start').value;
+      const end = document.getElementById('date-end').value;
+      const notes = document.getElementById('date-notes').value;
+      
+      if (!title || !start) {
+        showModal('Please at least provide a title and start date!');
+        return;
+      }
+      
+      let datesData = getData('datesData') || [];
+      const newId = datesData.length > 0 ? Math.max(...datesData.map(item => item.id)) + 1 : 1;
+      
+      datesData.push({
+        id: newId,
+        title,
+        start,
+        end: end || '-',
+        notes: notes || ''
+      });
+      
+      saveData('datesData', datesData);
+      loadDatesData();
+      clearDateForm();
+      showModal('Date information added successfully!');
+    }
+
+    // Delete item functions
+    function deleteAvailabilityItem(id) {
+      let availabilityData = getData('availabilityData') || [];
+      availabilityData = availabilityData.filter(item => item.id !== id);
+      saveData('availabilityData', availabilityData);
+      loadAvailabilityData();
+      showModal('Show deleted successfully!');
+    }
+
+    function deleteScheduleItem(id) {
+      let scheduleData = getData('scheduleData') || [];
+      scheduleData = scheduleData.filter(item => item.id !== id);
+      saveData('scheduleData', scheduleData);
+      loadScheduleData();
+      showModal('Schedule item deleted successfully!');
+    }
+
+    function deleteDateItem(id) {
+      let datesData = getData('datesData') || [];
+      datesData = datesData.filter(item => item.id !== id);
+      saveData('datesData', datesData);
+      loadDatesData();
+      showModal('Date information deleted successfully!');
+    }
+
+    // Form functions
+    function clearForm() {
+      document.getElementById('show-title').value = '';
+      document.getElementById('show-total').value = '';
+      document.getElementById('show-available').value = '';
+      document.getElementById('show-until').value = '';
+    }
+
+    function clearScheduleForm() {
+      document.getElementById('schedule-day').value = 'Monday';
+      document.getElementById('schedule-details').value = '';
+    }
+
+    function clearDateForm() {
+      document.getElementById('date-title').value = '';
+      document.getElementById('date-start').value = '';
+      document.getElementById('date-end').value = '';
+      document.getElementById('date-notes').value = '';
+    }
+
+    function resetAllData() {
+      if (confirm('Are you sure you want to reset all data to default? This cannot be undone.')) {
+        localStorage.removeItem('availabilityData');
+        localStorage.removeItem('scheduleData');
+        localStorage.removeItem('datesData');
+        loadAllData();
+        showModal('Data reset to default successfully!');
+      }
+    }
+
+    // Utility functions
+    function formatDate(dateString) {
+      if (!dateString || dateString === '-') return '-';
+      
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return dateString;
+      
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+
+    function parseDate(dateString) {
+      if (!dateString || dateString === '-') return '-';
+      
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return dateString;
+      
+      return date.toISOString().split('T')[0];
+    }
+
+    function showModal(message) {
+      document.getElementById('modal-message').textContent = message;
+      document.getElementById('confirmation-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('confirmation-modal').style.display = 'none';
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadAllData();
+    });
+  </script>
+</body>
+</html>

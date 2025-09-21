@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Retro Rewind: Classic TV Time Machine!</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --primary: #ff4d4d;
+    --secondary: #1c4587;
+    --accent: #ffcc00;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --vintage: #e6d2aa;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Chivo', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom, #2c3e50, #1a1a1a);
+    color: var(--light);
+    line-height: 1.6;
+    background-attachment: fixed;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Header Styles */
+  header {
+    background: linear-gradient(135deg, var(--secondary) 0%, #0a2a5e 100%);
+    color: #fff;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5px solid var(--accent);
+  }
+  
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+    opacity: 0.1;
+  }
+  
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    color: var(--accent);
+  }
+  
+  header p {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    color: white;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .film-strip {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    gap: 10px;
+  }
+  
+  .film-frame {
+    width: 60px;
+    height: 60px;
+    background: var(--dark);
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+  
+  /* Section Styles */
+  section {
+    padding: 2rem 0;
+  }
+  
+  h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin: 2rem 0 1rem;
+    color: var(--accent);
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  
+  /* Table Styles */
+  .table-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  th {
+    background: linear-gradient(to bottom, var(--secondary), #0d3269);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+  
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  td[contenteditable="true"] {
+    background-color: rgba(255, 254, 240, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  td[contenteditable="true"]:focus {
+    background-color: rgba(255, 254, 240, 0.4);
+    outline: 2px solid var(--accent);
+  }
+  
+  /* Progress bars for availability */
+  .progress-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 12px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    text-align: right;
+    padding-right: 5px;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Button Styles */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .save-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(to right, var(--primary), #ff6b6b);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  }
+  
+  .save-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+  }
+  
+  .save-button:active {
+    transform: translateY(0);
+  }
+  
+  .reset-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .reset-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Footer Styles */
+  .footer {
+    text-align: center;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #0a1930 0%, #1c4587 100%);
+    color: #fff;
+    margin-top: 3rem;
+    border-top: 5px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><polygon points="50,0 100,50 50,100 0,50" fill="white"/></svg>');
+    opacity: 0.1;
+  }
+  
+  .footer-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Animation for film strip */
+  @keyframes flicker {
+    0% { opacity: 0.8; }
+    5% { opacity: 0.9; }
+    10% { opacity: 0.7; }
+    15% { opacity: 0.95; }
+    20% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+  
+  .film-frame {
+    animation: flicker 4s infinite;
+  }
+  
+  .film-frame:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  
+  .film-frame:nth-child(3) {
+    animation-delay: 1s;
+  }
+  
+  .film-frame:nth-child(4) {
+    animation-delay: 1.5s;
+  }
+  
+  .film-frame:nth-child(5) {
+    animation-delay: 2s;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+    }
+    
+    .film-frame {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    th, td {
+      padding: 0.7rem;
+    }
+    
+    .button-group {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="film-strip">
+        <div class="film-frame">🎬</div>
+        <div class="film-frame">📺</div>
+        <div class="film-frame">🍿</div>
+        <div class="film-frame">🎭</div>
+        <div class="film-frame">⭐</div>
+      </div>
+      <h1 contenteditable="true">RETRO REWIND</h1>
+      <p contenteditable="true">Your Time Machine to Classic Television Adventures!</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2 contenteditable="true">📺 Show Availability</h2>
+      <div class="table-container">
+        <table id="availability">
+          <tr>
+            <th>Title</th>
+            <th>Total Episodes</th>
+            <th>Available</th>
+            <th>% Completed</th>
+            <th>Available Until</th>
+          </tr>
+          <tr>
+            <td contenteditable="true">Father Knows Best - Season 3</td>
+            <td contenteditable="true">12</td>
+            <td contenteditable="true">4</td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 67%">67%</div>
+              </div>
+            </td>
+            <td contenteditable="true">October 1, 2025</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Beverly Hillbillies - Season 1</td>
+            <td contenteditable="true">34</td>
+            <td contenteditable="true">6</td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 65%">65%</div>
+              </div>
+            </td>
+            <td contenteditable="true">October 25, 2025</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Munsters - Season 2</td>
+            <td contenteditable="true">15</td>
+            <td contenteditable="true">7</td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 53%">53%</div>
+              </div>
+            </td>
+            <td contenteditable="true">October 19, 2025</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Life and Legend of Wyatt Earp S2</td>
+            <td contenteditable="true">16</td>
+            <td contenteditable="true">8</td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 50%">50%</div>
+              </div>
+            </td>
+            <td contenteditable="true">November 15, 2025</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Annie Oakley</td>
+            <td contenteditable="true">17</td>
+            <td contenteditable="true">4</td>
+            <td>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: 76%">76%</div>
+              </div>
+            </td>
+            <td contenteditable="true">October 1, 2025</td>
+          </tr>
+        </table>
+      </div>
+
+      <h2 contenteditable="true">📅 Weekly Schedule</h2>
+      <div class="table-container">
+        <table id="schedule">
+          <tr>
+            <th>Monday</th>
+            <th>Wednesday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+          <tr>
+            <td contenteditable="true">Father Knows Best (1:00AM - 1:30AM)<br>Annie Oakley (1:30AM - 2:00AM)</td>
+            <td contenteditable="true">Father Knows Best (1:00AM - 1:30AM)<br>Annie Oakley (1:30AM - 2:00AM)</td>
+            <td contenteditable="true">The Life and Legend of Wyatt Earp S2 (4:00PM - 4:30PM)<br>The Beverly Hillbillies (4:30PM - 5:00PM)</td>
+            <td contenteditable="true">The Munsters (2:00PM - 3:00PM)</td>
+          </tr>
+        </table>
+      </div>
+
+      <h2 contenteditable="true">🗓️ Start & End Dates</h2>
+      <div class="table-container">
+        <table id="dates">
+          <tr>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Notes</th>
+          </tr>
+          <tr>
+            <td contenteditable="true">Father Knows Best Season 3</td>
+            <td contenteditable="true">August 25, 2025</td>
+            <td contenteditable="true">December 29, 2025</td>
+            <td contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Beverly Hillbillies</td>
+            <td contenteditable="true">March 8, 2025</td>
+            <td contenteditable="true">November 15, 2025</td>
+            <td contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Munsters S2</td>
+            <td contenteditable="true">August 31, 2025</td>
+            <td contenteditable="true">-</td>
+            <td contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Life and Legend of Wyatt Earp S2</td>
+            <td contenteditable="true">August 3, 2025</td>
+            <td contenteditable="true">April 26, 2026</td>
+            <td contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Annie Oakley</td>
+            <td contenteditable="true">August 6, 2025</td>
+            <td contenteditable="true">November 3, 2025</td>
+            <td contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Munsters S1</td>
+            <td contenteditable="true">May 4, 2025</td>
+            <td contenteditable="true">August 24, 2025</td>
+            <td contenteditable="true"></td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Father Knows Best Season 2</td>
+            <td contenteditable="true">April 21, 2025</td>
+            <td contenteditable="true">August 20, 2025</td>
+            <td contenteditable="true">Continue Season 3</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Adventure of Rex and Rinty</td>
+            <td contenteditable="true">July 26, 2025</td>
+            <td contenteditable="true">August 30, 2025</td>
+            <td contenteditable="true">Cancelled on August 8, 2025</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Johnny Ringo</td>
+            <td contenteditable="true">-</td>
+            <td contenteditable="true">-</td>
+            <td contenteditable="true">Cancelled on August 8, 2025</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Hudson's Bay</td>
+            <td contenteditable="true">December 14, 2024</td>
+            <td contenteditable="true">July 19, 2025</td>
+            <td contenteditable="true">Replaced by Rex and Rinty</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Green Hornet</td>
+            <td contenteditable="true">June 16, 2025</td>
+            <td contenteditable="true">August 4, 2025</td>
+            <td contenteditable="true">Replaced by Annie Oakley</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">The Life and Legend of Wyatt Earp S1</td>
+            <td contenteditable="true">December 1, 2024</td>
+            <td contenteditable="true">July 27, 2025</td>
+            <td contenteditable="true">Continue Season 2</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Hopalong Cassidy - Season 2</td>
+            <td contenteditable="true">February 16, 2025</td>
+            <td contenteditable="true">August 3, 2025</td>
+            <td contenteditable="true">Replaced by Johnny Ringo</td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="button-group">
+        <button class="save-button" onclick="saveEdits()">
+          <i class="fas fa-save"></i> Save Changes
+        </button>
+        <button class="reset-button" onclick="resetEdits()">
+          <i class="fas fa-undo"></i> Reset Changes
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2025 Retro Rewind - Classic TV Time Machine</p>
+    </div>
+  </div>
+
+  <script>
+    function saveEdits() {
+      const content = document.documentElement.outerHTML;
+      const blob = new Blob([content], { type: 'text/html' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'retro_rewind_edited.html';
+      link.click();
+      
+      // Show a confirmation
+      alert('Changes saved successfully! Your updated schedule has been downloaded.');
+    }
+    
+    function resetEdits() {
+      if (confirm('Are you sure you want to reset all changes? This cannot be undone.')) {
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>

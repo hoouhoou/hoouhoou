@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Doe | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to your fonts and icon library here -->
+</head>
+<body>
+
+    <!-- Chapter 1: Cover -->
+    <section id="cover">
+        <h1>Jane Doe</h1>
+        <p>Creative Front-End Developer</p>
+        <a href="#work" class="button">View My Work</a>
+    </section>
+
+    <!-- Chapter 2: About -->
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="profile-pic.jpg" alt="Jane Doe">
+        <p>I'm a developer based in Chicago specializing in...</p>
+        <a href="resume.pdf" class="button">Download Resume</a>
+    </section>
+
+    <!-- Chapter 3: Work -->
+    <section id="work">
+        <h2>Featured Work</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="project1.jpg" alt="Project 1">
+                <h3>Project Title</h3>
+                <p>Project description...</p>
+                <a href="#">Live Demo</a> | <a href="#">GitHub</a>
+            </div>
+            <!-- Repeat for other projects -->
+        </div>
+    </section>
+
+    <!-- Chapter 4: Skills -->
+    <section id="skills">
+        <h2>Skills & Tools</h2>
+        <div class="skills-list">
+            <!-- Your skills here -->
+        </div>
+    </section>
+
+    <!-- Chapter 5: Testimonials -->
+    <section id="testimonials">
+        <h2>Kind Words</h2>
+        <blockquote>
+            "Jane's work was exceptional..."
+            <cite>- Client Name</cite>
+        </blockquote>
+    </section>
+
+    <!-- Chapter 6: Contact -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <a href="mailto:hello@jane.com">hello@jane.com</a>
+        <div class="social-links">
+            <a href="#"><!-- GitHub Icon --></a>
+            <a href="#"><!-- LinkedIn Icon --></a>
+        </div>
+    </section>
+
+    <!-- Chapter 7: Footer -->
+    <footer>
+        <p>© 2023 Jane Doe. Built with passion.</p>
+    </footer>
+
+</body>
+</html>

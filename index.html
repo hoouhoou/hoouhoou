@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Smith | Professional On-Call Cleaner</title>
+    <title>Alex Morgan | Professional Photo Editor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* === CSS RESET & GLOBAL STYLES === */
@@ -14,21 +14,21 @@
         }
 
         :root {
-            /* Color Palette - Clean & Professional */
-            --primary-blue: #0066cc;      /* Trustworthy blue */
-            --primary-green: #27ae60;     /* Fresh green */
+            /* Color Palette - Creative & Professional */
+            --primary-dark: #1a1a2e;      /* Deep navy */
+            --primary-purple: #6c63ff;    /* Creative purple */
             --primary-light: #f8f9fa;     /* Clean white */
-            --accent-yellow: #f1c40f;     /* Attention yellow */
+            --accent-teal: #00b4d8;       /* Vibrant teal */
             --text-dark: #2c3e50;
             --text-light: #ffffff;
             --gray-medium: #95a5a6;
             
             /* Typography */
-            --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
             
             /* Spacing */
-            --section-padding: 4rem 1rem;
+            --section-padding: 5rem 1rem;
             --container-max-width: 1200px;
         }
 
@@ -54,13 +54,13 @@
         }
 
         h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
         }
 
         h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             position: relative;
         }
 
@@ -72,7 +72,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: var(--primary-green);
+            background: var(--accent-teal);
         }
 
         p {
@@ -82,14 +82,14 @@
         /* === BUTTONS === */
         .button {
             display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: var(--primary-green);
+            padding: 0.9rem 2rem;
+            background: var(--primary-purple);
             color: var(--text-light);
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 30px;
             font-weight: 600;
             transition: all 0.3s ease;
-            border: 2px solid var(--primary-green);
+            border: 2px solid var(--primary-purple);
             font-size: 1rem;
             text-align: center;
             cursor: pointer;
@@ -97,23 +97,24 @@
 
         .button:hover {
             background: transparent;
-            color: var(--primary-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            color: var(--primary-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
         }
 
-        .button-blue {
-            background: var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-
-        .button-blue:hover {
+        .button-outline {
             background: transparent;
-            color: var(--primary-blue);
+            color: var(--primary-purple);
+            border: 2px solid var(--primary-purple);
+        }
+
+        .button-outline:hover {
+            background: var(--primary-purple);
+            color: var(--text-light);
         }
 
         .button-large {
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
         }
 
@@ -127,6 +128,7 @@
             z-index: 1000;
             padding: 1rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -138,16 +140,16 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-blue);
+            color: var(--primary-purple);
             text-decoration: none;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .nav-menu a {
@@ -155,27 +157,36 @@
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            position: relative;
         }
 
-        .nav-menu a:hover {
-            color: var(--primary-blue);
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-purple);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
         }
 
         .hamburger {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
-            color: var(--primary-blue);
+            color: var(--primary-purple);
         }
 
         /* === CHAPTER 1: COVER === */
         #cover {
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(39, 174, 96, 0.8)), 
-                        url(https://unsplash.com/photos/a-man-sweeps-a-walkway-with-vibrant-flowers-1BeWGTjTC0w);
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #16213e 100%);
             color: var(--text-light);
             display: flex;
             flex-direction: column;
@@ -183,43 +194,50 @@
             align-items: center;
             text-align: center;
             padding: var(--section-padding);
-            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .cover-content {
             max-width: 800px;
             padding: 0 1rem;
+            z-index: 2;
         }
 
         .cover-badge {
-            background: var(--accent-yellow);
-            color: var(--text-dark);
-            padding: 0.5rem 1.2rem;
+            background: var(--accent-teal);
+            color: var(--text-light);
+            padding: 0.6rem 1.5rem;
             border-radius: 30px;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: inline-block;
             font-size: 0.9rem;
         }
 
+        #cover h1 {
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--accent-teal), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         #cover .tagline {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .cover-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
+            color: #e0e0e0;
         }
 
         .cover-buttons {
@@ -241,49 +259,138 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .about-image {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             margin: 0 auto;
             display: block;
         }
 
         .about-text h3 {
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            color: var(--primary-purple);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
         }
 
-        .about-features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .about-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
+            margin: 2rem 0;
         }
 
-        .about-features li:before {
-            content: '✓';
-            color: var(--primary-green);
-            font-weight: bold;
-            font-size: 1.2rem;
+        .skill-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
 
-        /* === CHAPTER 3: SERVICES === */
-        #services {
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        /* === CHAPTER 3: PORTFOLIO === */
+        #portfolio {
             padding: var(--section-padding);
             background: white;
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: var(--primary-light);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-purple);
+            color: white;
+        }
+
+        .portfolio-grid {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(26, 26, 46, 0.9));
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-category {
+            color: var(--accent-teal);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* === CHAPTER 4: SERVICES === */
+        #services {
+            padding: var(--section-padding);
+            background: var(--primary-light);
         }
 
         .services-grid {
@@ -300,124 +407,44 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 4px solid var(--primary-green);
+            text-align: center;
+            padding: 2rem;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .service-icon {
-            background: var(--primary-light);
-            padding: 1.5rem;
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-        }
-
-        .service-content {
-            padding: 1.5rem;
-        }
-
-        .service-content h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .service-features {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .service-features li {
-            padding: 0.3rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .service-features li:before {
-            content: '•';
-            color: var(--primary-green);
-            font-weight: bold;
-        }
-
-        .service-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-green);
-            margin: 1rem 0;
-        }
-
-        /* === CHAPTER 4: WHY CHOOSE ME === */
-        #why-choose {
-            padding: var(--section-padding);
-            background: var(--primary-light);
-        }
-
-        .qualities-grid {
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .quality-card {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .quality-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--primary-blue);
+            width: 80px;
+            height: 80px;
+            background: var(--primary-purple);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            margin: 0 auto 1rem;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
         }
 
-        /* === CHAPTER 5: WORK AREAS === */
-        #areas {
-            padding: var(--section-padding);
-            background: white;
+        .service-content h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
         }
 
-        .areas-container {
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            text-align: center;
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-teal);
+            margin: 1.5rem 0;
         }
 
-        .areas-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .area-tag {
-            background: var(--primary-light);
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-weight: 600;
-            border: 2px solid var(--primary-green);
-            font-size: 0.9rem;
-        }
-
-        /* === CHAPTER 6: TESTIMONIALS === */
+        /* === CHAPTER 5: TESTIMONIALS === */
         #testimonials {
             padding: var(--section-padding);
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #0047ab 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #16213e 100%);
             color: var(--text-light);
         }
 
@@ -426,28 +453,29 @@
         }
 
         #testimonials h2::after {
-            background: var(--accent-yellow);
+            background: var(--accent-teal);
         }
 
         .testimonials-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .testimonial {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 10px;
-            margin: 2rem 0;
             position: relative;
-            text-align: center;
             backdrop-filter: blur(10px);
         }
 
         .testimonial::before {
             content: '"';
-            font-size: 3rem;
-            color: var(--accent-yellow);
+            font-size: 4rem;
+            color: var(--accent-teal);
             position: absolute;
             top: -10px;
             left: 20px;
@@ -456,32 +484,45 @@
 
         .testimonial-text {
             font-style: italic;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .testimonial-author {
-            font-weight: 600;
-            color: var(--accent-yellow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .testimonial-role {
-            color: #ecf0f1;
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+            color: var(--accent-teal);
+        }
+
+        .author-info p {
             font-size: 0.9rem;
+            color: #ccc;
+            margin: 0;
         }
 
-        /* === CHAPTER 7: CONTACT === */
+        /* === CHAPTER 6: CONTACT === */
         #contact {
             padding: var(--section-padding);
-            background: var(--primary-light);
+            background: white;
         }
 
         .contact-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .contact-info {
@@ -493,31 +534,30 @@
             align-items: center;
             gap: 1rem;
             margin: 1.5rem 0;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            flex-direction: column;
-            text-align: center;
+            padding: 1.5rem;
+            background: var(--primary-light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-blue);
+            width: 60px;
+            height: 60px;
+            background: var(--primary-purple);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
         .contact-form {
-            background: white;
-            padding: 1.5rem;
+            background: var(--primary-light);
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
         .form-group {
@@ -535,9 +575,9 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             border: 2px solid #e0e0e0;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
             font-family: inherit;
@@ -547,25 +587,15 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-blue);
+            border-color: var(--primary-purple);
         }
 
-        .emergency-notice {
-            background: #fff3cd;
-            border: 1px solid var(--accent-yellow);
-            border-radius: 6px;
-            padding: 1rem;
-            margin: 1rem 0;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        /* === CHAPTER 8: FOOTER === */
+        /* === CHAPTER 7: FOOTER === */
         footer {
-            background: var(--text-dark);
+            background: var(--primary-dark);
             color: var(--text-light);
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
         }
 
         .footer-content {
@@ -573,61 +603,50 @@
             margin: 0 auto;
         }
 
-        .business-hours {
-            margin: 1rem 0;
-            font-style: italic;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #aaa;
         }
 
         /* === RESPONSIVE DESIGN - MEDIA QUERIES === */
-        /* Small devices (landscape phones, 576px and up) */
-        @media (min-width: 576px) {
-            :root {
-                --section-padding: 4rem 1.5rem;
-            }
-            
-            .contact-item {
-                flex-direction: row;
-                text-align: left;
-            }
-        }
-
         /* Medium devices (tablets, 768px and up) */
         @media (min-width: 768px) {
             :root {
-                --section-padding: 4rem 2rem;
+                --section-padding: 5rem 2rem;
             }
             
             .about-container {
                 grid-template-columns: 1fr 1fr;
-                gap: 3rem;
             }
             
             .contact-container {
                 grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-            }
-            
-            .cover-features {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Large devices (desktops, 992px and up) */
-        @media (min-width: 992px) {
-            .nav-menu {
-                gap: 2rem;
-            }
-            
-            .nav-menu a {
-                font-size: 1rem;
-            }
-        }
-
-        /* Extra large devices (large desktops, 1200px and up) */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: var(--container-max-width);
-                margin: 0 auto;
             }
         }
 
@@ -664,8 +683,9 @@
                 align-items: center;
             }
             
-            .cover-features {
-                grid-template-columns: 1fr;
+            .portfolio-filters {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
@@ -703,15 +723,16 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#cover" class="logo">CleanPro</a>
+            <a href="#cover" class="logo">PixelPerfect</a>
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#cover">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#why-choose">Why Choose Me</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -719,36 +740,19 @@
 
     <!-- Chapter 1: Cover -->
     <section id="cover">
+        <div class="cover-bg"></div>
         <div class="cover-content fade-in">
-            <div class="cover-badge">Available 24/7 • Emergency Cleaning</div>
-            <h1>John Smith</h1>
-            <p class="tagline">Professional On-Call Cleaner</p>
-            <p>Reliable, thorough cleaning services when you need them most</p>
+            <div class="cover-badge">Professional Photo Editor</div>
+            <h1>Alex Morgan</h1>
+            <p class="tagline">Transforming your images with precision and creativity</p>
+            <p>Specializing in portrait retouching, color grading, and creative photo manipulation</p>
             
-            <div class="cover-features">
-                <div class="feature-item">
-                    <i class="fas fa-clock"></i>
-                    <h3>24/7 Availability</h3>
-                    <p>Emergency cleaning services</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Fully Insured</h3>
-                    <p>Peace of mind guaranteed</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-leaf"></i>
-                    <h3>Eco-Friendly</h3>
-                    <p>Safe cleaning products</p>
-                </div>
-            </div>
-
             <div class="cover-buttons">
-                <a href="tel:+1234567890" class="button button-large">
-                    <i class="fas fa-phone"></i> Call Now: (123) 456-7890
+                <a href="#portfolio" class="button button-large">
+                    <i class="fas fa-images"></i> View My Work
                 </a>
-                <a href="#contact" class="button button-blue button-large">
-                    <i class="fas fa-calendar"></i> Schedule Cleaning
+                <a href="#contact" class="button button-outline button-large">
+                    <i class="fas fa-envelope"></i> Get In Touch
                 </a>
             </div>
         </div>
@@ -756,176 +760,193 @@
 
     <!-- Chapter 2: About -->
     <section id="about">
-        <h2>About My Service</h2>
+        <h2>About Me</h2>
         <div class="about-container">
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Professional Cleaner" class="about-image">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Alex Morgan - Photo Editor" class="about-image">
             <div class="about-text">
-                <h3>Reliable Cleaning When You Need It Most</h3>
-                <p>With over 8 years of experience in professional cleaning services, I understand that messes don't always happen during business hours. That's why I offer reliable on-call cleaning services for both residential and commercial clients.</p>
+                <h3>Creative Vision Meets Technical Precision</h3>
+                <p>With over 7 years of experience in professional photo editing, I specialize in transforming ordinary images into extraordinary visual stories. My expertise spans portrait retouching, commercial product editing, creative composites, and color grading.</p>
+                <p>I work with photographers, brands, and individuals to enhance their visual content while maintaining the authentic essence of each image.</p>
                 
-                <ul class="about-features">
-                    <li>Available 24/7 for emergency cleaning situations</li>
-                    <li>Fully insured and background checked</li>
-                    <li>Eco-friendly cleaning products available</li>
-                    <li>Commercial and residential cleaning</li>
-                    <li>Same-day service available</li>
-                    <li>Satisfaction guaranteed</li>
-                </ul>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-magic"></i></div>
+                        <h4>Retouching</h4>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                        <h4>Color Grading</h4>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-object-group"></i></div>
+                        <h4>Compositing</h4>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fas fa-cube"></i></div>
+                        <h4>Product Editing</h4>
+                    </div>
+                </div>
 
-                <a href="#contact" class="button">Get Free Quote</a>
+                <a href="#contact" class="button">Start a Project</a>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 3: Services -->
+    <!-- Chapter 3: Portfolio -->
+    <section id="portfolio">
+        <h2>My Portfolio</h2>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All Work</button>
+            <button class="filter-btn" data-filter="retouching">Portrait Retouching</button>
+            <button class="filter-btn" data-filter="commercial">Commercial</button>
+            <button class="filter-btn" data-filter="creative">Creative Editing</button>
+        </div>
+        <div class="portfolio-grid">
+            <!-- Portfolio Item 1 -->
+            <div class="portfolio-item" data-category="retouching">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portrait Retouching" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Portrait Enhancement</h3>
+                    <p class="portfolio-category">Portrait Retouching</p>
+                </div>
+            </div>
+            <!-- Portfolio Item 2 -->
+            <div class="portfolio-item" data-category="commercial">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Product Editing" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Product Commercial</h3>
+                    <p class="portfolio-category">Commercial</p>
+                </div>
+            </div>
+            <!-- Portfolio Item 3 -->
+            <div class="portfolio-item" data-category="creative">
+                <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Creative Composite" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Fantasy Composite</h3>
+                    <p class="portfolio-category">Creative Editing</p>
+                </div>
+            </div>
+            <!-- Portfolio Item 4 -->
+            <div class="portfolio-item" data-category="retouching">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fashion Retouching" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Fashion Editorial</h3>
+                    <p class="portfolio-category">Portrait Retouching</p>
+                </div>
+            </div>
+            <!-- Portfolio Item 5 -->
+            <div class="portfolio-item" data-category="commercial">
+                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Real Estate Editing" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Real Estate Enhancement</h3>
+                    <p class="portfolio-category">Commercial</p>
+                </div>
+            </div>
+            <!-- Portfolio Item 6 -->
+            <div class="portfolio-item" data-category="creative">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Conceptual Art" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Conceptual Artwork</h3>
+                    <p class="portfolio-category">Creative Editing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 4: Services -->
     <section id="services">
-        <h2>My Cleaning Services</h2>
+        <h2>My Services</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <div class="service-content">
-                    <h3>Residential Cleaning</h3>
-                    <p>Complete home cleaning services for emergencies or regular maintenance</p>
-                    <ul class="service-features">
-                        <li>Deep kitchen and bathroom cleaning</li>
-                        <li>Floor mopping and vacuuming</li>
-                        <li>Dusting and surface cleaning</li>
-                        <li>Window cleaning</li>
-                        <li>Post-construction cleanup</li>
+                    <h3>Portrait Retouching</h3>
+                    <p>Professional skin retouching, enhancement of features, and natural-looking edits that maintain authenticity.</p>
+                    <ul>
+                        <li>Skin smoothing & blemish removal</li>
+                        <li>Eye enhancement & whitening</li>
+                        <li>Teeth whitening</li>
+                        <li>Body shaping (subtle & natural)</li>
                     </ul>
-                    <div class="service-price">From $75</div>
+                    <div class="service-price">Starting at $25/image</div>
                     <a href="#contact" class="button">Book Service</a>
                 </div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">
-                    <i class="fas fa-building"></i>
+                    <i class="fas fa-shopping-bag"></i>
                 </div>
                 <div class="service-content">
-                    <h3>Commercial Cleaning</h3>
-                    <p>Emergency cleaning for offices, retail spaces, and commercial properties</p>
-                    <ul class="service-features">
-                        <li>Office deep cleaning</li>
-                        <li>Restroom sanitation</li>
-                        <li>Floor maintenance</li>
-                        <li>Window cleaning</li>
-                        <li>Emergency spill cleanup</li>
+                    <h3>Product Editing</h3>
+                    <p>Clean, professional product images optimized for e-commerce and advertising.</p>
+                    <ul>
+                        <li>Background removal/replacement</li>
+                        <li>Color correction & consistency</li>
+                        <li>Shadow creation</li>
+                        <li>Reflection cleanup</li>
                     </ul>
-                    <div class="service-price">From $120</div>
+                    <div class="service-price">Starting at $15/image</div>
                     <a href="#contact" class="button">Book Service</a>
                 </div>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">
-                    <i class="fas fa-tint"></i>
+                    <i class="fas fa-paint-brush"></i>
                 </div>
                 <div class="service-content">
-                    <h3>Specialty Cleaning</h3>
-                    <p>Specialized cleaning services for unique situations</p>
-                    <ul class="service-features">
-                        <li>Post-renovation cleanup</li>
-                        <li>Move-in/move-out cleaning</li>
-                        <li>Emergency water damage cleanup</li>
-                        <li>Party/event cleanup</li>
-                        <li>Pet accident cleanup</li>
+                    <h3>Creative Editing</h3>
+                    <p>Transform your images with creative effects, composites, and artistic enhancements.</p>
+                    <ul>
+                        <li>Photo manipulation & composites</li>
+                        <li>Creative color grading</li>
+                        <li>Special effects</li>
+                        <li>Conceptual artwork</li>
                     </ul>
-                    <div class="service-price">From $100</div>
+                    <div class="service-price">Starting at $50/image</div>
                     <a href="#contact" class="button">Book Service</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 4: Why Choose Me -->
-    <section id="why-choose">
-        <h2>Why Choose My Service</h2>
-        <div class="qualities-grid">
-            <div class="quality-card">
-                <div class="quality-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Fast Response</h3>
-                <p>Available 24/7 with quick response times for emergency situations</p>
-            </div>
-            <div class="quality-card">
-                <div class="quality-icon">
-                    <i class="fas fa-award"></i>
-                </div>
-                <h3>Professional Quality</h3>
-                <p>8+ years of experience with attention to detail in every job</p>
-            </div>
-            <div class="quality-card">
-                <div class="quality-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Fully Insured</h3>
-                <p>Complete insurance coverage for your peace of mind</p>
-            </div>
-            <div class="quality-card">
-                <div class="quality-icon">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <h3>Eco-Friendly</h3>
-                <p>Environmentally safe cleaning products available upon request</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter 5: Service Areas -->
-    <section id="areas">
-        <h2>Service Areas</h2>
-        <div class="areas-container">
-            <p>I serve the greater metropolitan area with reliable on-call cleaning services</p>
-            <div class="areas-list">
-                <span class="area-tag">Downtown</span>
-                <span class="area-tag">Northside</span>
-                <span class="area-tag">Southside</span>
-                <span class="area-tag">East End</span>
-                <span class="area-tag">West District</span>
-                <span class="area-tag">Suburban Areas</span>
-            </div>
-            <p><em>Call to confirm service availability in your area</em></p>
-        </div>
-    </section>
-
-    <!-- Chapter 6: Testimonials -->
+    <!-- Chapter 5: Testimonials -->
     <section id="testimonials">
         <h2>Client Testimonials</h2>
         <div class="testimonials-container">
             <div class="testimonial">
-                <p class="testimonial-text">"John saved us when we had a major spill after hours. He was here within an hour and did an amazing job. Professional, efficient, and thorough!"</p>
-                <p class="testimonial-author">Sarah Johnson</p>
-                <p class="testimonial-role">Office Manager, Tech Solutions Inc.</p>
+                <p class="testimonial-text">"Alex transformed my portrait photography business. The edits are always natural yet stunning, and my clients are thrilled with the results. Highly recommended!"</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sarah Johnson" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Portrait Photographer</p>
+                    </div>
+                </div>
             </div>
             <div class="testimonial">
-                <p class="testimonial-text">"I needed emergency cleaning after a pipe burst. John responded immediately and worked through the night. Couldn't be happier with the service!"</p>
-                <p class="testimonial-author">Michael Chen</p>
-                <p class="testimonial-role">Homeowner</p>
+                <p class="testimonial-text">"The product images Alex edited for our e-commerce store have significantly increased our conversion rates. The attention to detail is exceptional."</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Michael Chen" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Michael Chen</h4>
+                        <p>E-commerce Manager</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 7: Contact -->
+    <!-- Chapter 6: Contact -->
     <section id="contact">
-        <h2>Contact Me</h2>
+        <h2>Get In Touch</h2>
         <div class="contact-container">
             <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <p>Ready to schedule a cleaning or need an emergency service? Contact me anytime!</p>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h4>Emergency Line</h4>
-                        <a href="tel:+1234567890">(123) 456-7890</a>
-                    </div>
-                </div>
+                <h3>Let's Create Something Amazing</h3>
+                <p>Ready to enhance your images? Contact me to discuss your project requirements.</p>
                 
                 <div class="contact-item">
                     <div class="contact-icon">
@@ -933,7 +954,17 @@
                     </div>
                     <div>
                         <h4>Email</h4>
-                        <a href="mailto:john@cleaningpro.com">john@cleaningpro.com</a>
+                        <a href="mailto:alex@pxperfect.com">alex@pxperfect.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4>Phone</h4>
+                        <a href="tel:+1234567890">(123) 456-7890</a>
                     </div>
                 </div>
                 
@@ -942,63 +973,55 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div>
-                        <h4>Service Hours</h4>
-                        <p>24/7 Emergency Service</p>
+                        <h4>Response Time</h4>
+                        <p>Within 24 hours</p>
                     </div>
-                </div>
-
-                <div class="emergency-notice">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <strong>Emergency Service Available</strong><br>
-                    Call anytime for urgent cleaning needs
                 </div>
             </div>
 
             <form class="contact-form">
-                <h3>Request a Quote</h3>
+                <h3>Project Inquiry</h3>
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="service-type">Service Needed</label>
-                    <select id="service-type" name="service-type" required>
+                    <label for="service">Service Needed</label>
+                    <select id="service" name="service" required>
                         <option value="">Select a service</option>
-                        <option value="residential">Residential Cleaning</option>
-                        <option value="commercial">Commercial Cleaning</option>
-                        <option value="specialty">Specialty Cleaning</option>
-                        <option value="emergency">Emergency Cleaning</option>
+                        <option value="retouching">Portrait Retouching</option>
+                        <option value="product">Product Editing</option>
+                        <option value="creative">Creative Editing</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="urgency">Urgency</label>
-                    <select id="urgency" name="urgency" required>
-                        <option value="">Select urgency</option>
-                        <option value="emergency">Emergency (Within 2 hours)</option>
-                        <option value="today">Today</option>
-                        <option value="this-week">This Week</option>
-                        <option value="next-week">Next Week</option>
-                    </select>
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="message">Additional Details</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Please describe your cleaning needs..."></textarea>
-                </div>
-                <button type="submit" class="button">Send Request</button>
+                <button type="submit" class="button">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- Chapter 8: Footer -->
+    <!-- Chapter 7: Footer -->
     <footer>
         <div class="footer-content">
-            <h3>John Smith - Professional On-Call Cleaner</h3>
-            <p class="business-hours">24/7 Emergency Cleaning Services • Fully Insured • Satisfaction Guaranteed</p>
-            <p>&copy; 2023 John Smith Cleaning Services. All rights reserved.</p>
+            <h3>Alex Morgan - Professional Photo Editor</h3>
+            <p>Transforming images with precision and creativity since 2016</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+            </div>
+            
+            <p class="copyright">&copy; 2023 Alex Morgan | PixelPerfect Editing. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1016,11 +1039,43 @@
             navMenu.classList.remove('active');
         }));
         
+        // Portfolio filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
         // Form submission
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your request! We will contact you shortly.');
+            alert('Thank you for your inquiry! I will get back to you within 24 hours.');
             this.reset();
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                document.querySelector('.navbar').style.background = 'rgba(255, 255, 255, 0.95)';
+            }
         });
     </script>
 </body>
